@@ -33,7 +33,7 @@ import javafx.scene.media.AudioClip;
  */
 public class EnglishToJapanesePane {
 
-    private final int NUM_QUESTIONS = 4;
+    private final int NUM_QUESTIONS = 6;
     private final int NUM_NOT_YET_QUESTION = 5;
     private final int NUM_LAST_WRONG_QUESTION = 5;
     private final int NUM_CHOICE = 4;       // 答えの選択肢数

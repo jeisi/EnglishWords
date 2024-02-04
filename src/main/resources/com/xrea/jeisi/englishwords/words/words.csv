@@ -8,3 +8,14 @@ library,図書室,library.mp3
 breakfast,朝食,breakfast.mp3
 lunch,昼食,lunch.mp3
 dinner,夕食,dinner.mp3
+,,
+what,何,what.mp3
+where,どこ <場所>,where.mp3
+when,いつ <時間>,when.mp3
+why,なぜ,why.mp3
+who,誰,who.mp3
+how,どうやって,how.mp3
+whose,誰の,whose.mp3
+which,どちら,which.mp3
+how much,（値段が）いくら,how_much.mp3
+how long,どのくらい遠い,how_long.mp3
