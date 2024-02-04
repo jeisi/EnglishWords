@@ -2,8 +2,8 @@ package com.xrea.jeisi.englishwords;
 
 import com.xrea.jeisi.englishwords.residentwork.ResidentWork;
 import com.xrea.jeisi.englishwords.residentwork.Words;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,10 +26,10 @@ public class App extends Application implements ActionListener {
     private int pageIndex = 0;
 
     //private List<Word> words = new ArrayList<>();
-
     public App() {
         residentWork = new ResidentWork();
-        
+        residentWork.setMainClass(getClass());
+
         this.finishPane = new FinishPane();
         this.finishPane.addActionListener(this);
     }
@@ -38,7 +38,10 @@ public class App extends Application implements ActionListener {
     public void start(Stage stage) {
         this.stage = stage;
 
-        loadWords();
+        boolean result = loadWords();
+        if (!result) {
+            return;
+        }
 
         var pane = createPage(PAGE_ENGLISH_TO_JAPANESE);
         var scene = new Scene(pane, 640, 480);
@@ -47,7 +50,7 @@ public class App extends Application implements ActionListener {
 
         try {
             englishToJapanesePane.makeQuestions();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR, "エラー", ButtonType.CLOSE);
             alert.setContentText(e.getLocalizedMessage());
@@ -94,9 +97,18 @@ public class App extends Application implements ActionListener {
         }
     }
 
-    private void loadWords() {
+    private boolean loadWords() {
         Words words = residentWork.getWords();
-        words.load();
+        try {
+            words.load(residentWork.getMainClass());
+        } catch (FileNotFoundException | URISyntaxException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "ERROR", ButtonType.CLOSE);
+            alert.setHeaderText(null);
+            alert.setContentText(ex.getLocalizedMessage());
+            alert.showAndWait();
+            return false;
+        }
+        return true;
     }
 
 }

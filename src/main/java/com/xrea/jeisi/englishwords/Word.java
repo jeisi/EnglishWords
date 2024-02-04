@@ -23,6 +23,10 @@ public class Word {
         this.mp3 = mp3;
     }
     
+    public Word(String[] csv) {
+        this(csv[0], csv[1], csv[2]);
+    }
+    
     public String getEnglish() {
         return english;
     }

@@ -15,19 +15,30 @@ import java.util.TreeMap;
  * @author jeisi
  */
 public class ResidentWork {
-    private TreeMap<String,TestScore> scores = new TreeMap<>();
+
+    private TreeMap<String, TestScore> scores = new TreeMap<>();
     private Words words = new Words();
-    
+    private Class<?> mainClass;
+
     public TestScore getTestScore(String key) {
         TestScore testScore = scores.get(key);
-        if(testScore == null) {
+        if (testScore == null) {
             testScore = new TestScore();
             scores.put(key, testScore);
         }
         return testScore;
     }
-    
+
     public Words getWords() {
         return words;
     }
+
+    public void setMainClass(Class<?> mainClass) {
+        this.mainClass = mainClass;
+    }
+
+    public Class<?> getMainClass() {
+        return mainClass;
+    }
+
 }
